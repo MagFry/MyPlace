@@ -1,0 +1,40 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<div class="space"></div>
+
+{%for room in rooms %}
+
+<div class="h-50 d-inline-block" style="width: 950px; background-color: rgba(0,0,255,.1)">
+    <div class="list-group">
+        <a href="/chat/chating/" class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ room.name_of_room }}</h5>
+                <small class="text-muted">{{ room.date }}</small>
+            </div>
+            <p class="mb-1">{{ room.short_description }}</p>
+            <small class="text-muted">created by {{ room.author.username}}</small>
+        </a>
+    </div>
+</div>
+
+{%endfor %}
+
+<div class="create-group-button">
+<a class="btn btn-primary ml-1" href="{% url 'chat:create' %}" role="button">Create group</a>
+</div>
+<div class="space"></div>
+
+
+{% endblock %}
+
+
+{% block navbar %}
+
+<div class="btn-group" role="group" aria-label="...">
+    <a class="btn btn-primary btn-md mr-2" href="{% url 'accounts:profile' %}" role="button">My Profile</a>
+    <a class="btn btn-primary" href="{% url 'accounts:logout' %}" role="button">Log Out</a>
+</div>
+
+{% endblock %}

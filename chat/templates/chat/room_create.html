@@ -1,0 +1,55 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<main class="my-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <form class="my-form" action="{% url 'chat:create' %}" method="post">
+                    <div class="card-header">Create a group</div>
+                    <div class="card-body">
+
+                        {% csrf_token %}
+                        {% for field in form %}
+
+                            {% if field.name == 'name_of_room' %}
+                            <div class="form-group">
+                                <label for="formGroupExampleInput">Name of chat room</label>
+                                <input type="text" class="form-control" id="formGroupExampleInput" name="name_of_room" placeholder="Type the name of chat room">
+                            </div>
+                            {% endif %}
+
+                            {% if field.name == 'description' %}
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1">Description of chat room</label>
+                                <textarea class="form-control" id="exampleFormControlTextarea1" name="description" rows="3" placeholder="What topics will be discussed there"></textarea>
+                            </div>
+                            {% endif %}
+
+                        {% endfor %}
+
+                        <div class="col-md-6 offset-md-4">
+                            <button type="submit" class="btn btn-primary">Create</button>
+                        </div>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+
+
+{% block navbar %}
+
+<div class="btn-group" role="group" aria-label="...">
+    <a class="btn btn-primary btn-md mr-2" href="{% url 'chat:list' %}" role="button">Groups</a>
+    <a class="btn btn-primary btn-md mr-2" href="{% url 'accounts:profile' %}" role="button">My Profile</a>
+    <a class="btn btn-primary" href="{% url 'accounts:logout' %}" role="button">Log Out</a>
+</div>
+
+{% endblock %}

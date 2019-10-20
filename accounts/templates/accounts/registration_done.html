@@ -1,0 +1,16 @@
+{% extends 'base_layout.html' %}
+
+{% block content %}
+
+<main class="done_form">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1><center>Hello, {{user.first_name}}</center></h1>
+                <p><center>Your account has been created. You can <a href="{% url 'accounts:home' %}">login</a>.</center></p>
+            </div>
+        </div>
+    </div>
+</main>
+
+{% endblock %}

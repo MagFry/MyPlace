@@ -1,0 +1,110 @@
+{% extends 'base_layout.html' %}
+
+
+{% block content %}
+
+<main class="my-form">
+    <div class="cotainer">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                    <div class="card">
+                        <div class="card-header">Register</div>
+                        <div class="card-body">
+                            <form name="my-form" onsubmit="return validform()" action={% url 'accounts:signup' %} method="post">
+                                {% csrf_token %}
+                                {% for field in form %}
+
+                                {% if field.name == 'username' %}
+                                <div class="form-group row">
+                                    <label for="username" class="col-md-4 col-form-label text-md-right">Username</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="username" class="form-control" name="username">
+                                        <small style="color: grey">{{ field.help_text }}</small>
+                                        <small style="color: red">{{ field.errors }}</small>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if field.name == 'first_name' %}
+                                <div class="form-group row">
+                                    <label for="first_name" class="col-md-4 col-form-label text-md-right">First Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="first_name" class="form-control" name="first_name">
+                                        <small style="color: grey">{{ field.help_text }}</small>
+                                        <small style="color: red">{{ field.errors }}</small>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if field.name == 'last_name' %}
+                                <div class="form-group row">
+                                    <label for="last_name" class="col-md-4 col-form-label text-md-right">Last Name</label>
+                                    <div class="col-md-6">
+                                        <input type="text" id="last_name" class="form-control" name="last_name">
+                                        <small style="color: grey">{{ field.help_text }}</small>
+                                        <small style="color: red">{{ field.errors }}</small>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if field.name == 'email' %}
+                                <div class="form-group row">
+                                    <label for="email" class="col-md-4 col-form-label text-md-right">Email</label>
+                                    <div class="col-md-6">
+                                        <input type="email" id="email" class="form-control" name="email">
+                                        <small style="color: grey">{{ field.help_text }}</small>
+                                        <small style="color: red">{{ field.errors }}</small>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if field.name == 'password1' %}
+                                <div class="form-group row">
+                                    <label for="password1" class="col-md-4 col-form-label text-md-right">Password</label>
+                                    <div class="col-md-6">
+                                        <input type="password" id="password1" class="form-control" name="password1">
+                                        <small style="color: grey">{{ field.help_text }}</small>
+                                        <small style="color: red">{{ field.errors }}</small>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% if field.name == 'password2' %}
+                                <div class="form-group row">
+                                    <label for="password2" class="col-md-4 col-form-label text-md-right">Password confirmation</label>
+                                    <div class="col-md-6">
+                                        <input type="password" id="password2" class="form-control" name="password2">
+                                        <small style="color: grey">{{ field.help_text }}</small>
+                                        <small style="color: red">{{ field.errors }}</small>
+                                    </div>
+                                </div>
+                                {% endif %}
+
+                                {% endfor %}
+
+
+                                    <div class="col-md-6 offset-md-4">
+                                        <button type="submit" class="btn btn-primary">
+                                        Register
+                                        </button>
+                                    </div>
+
+                            </form>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+{% endblock %}
+
+
+{% block navbar %}
+
+<div class="btn-group" role="group" aria-label="...">
+    <a class="btn btn-primary" href="{% url 'accounts:home' %}" role="button">Login</a>
+</div>
+
+{% endblock %}
